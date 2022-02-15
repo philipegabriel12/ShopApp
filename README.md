@@ -1,6 +1,7 @@
 # ShopApp
 
-A simple yet fully functional full-stack e-commerce project, built with Postgres, Express, React and Node.
+Not yet --> A simple yet fully functional full-stack e-commerce project, built with Postgres, Express, React and Node.
+
 It's also my first project.
 
 ## Setup locally
@@ -26,8 +27,7 @@ It's also my first project.
 ```
 * Go to the client directory and install the dependencies
 ```shell
-  cd ..
-  cd client
+  cd ../client
   npm install
 ```
 
