@@ -8,7 +8,7 @@ export async function onSignup(signupData:object) {
         )
 }
 
-export async function onLogin(loginData:any){
+export async function onLogin(loginData:object){
     return await axios.post(
         "http://localhost:5000/api/login",
         loginData

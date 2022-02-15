@@ -1,10 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-interface CounterState {
-  isAuth: boolean
+const userAuthFromLocalStorage = () => {
+  const isAuth = localStorage.getItem('isAuth')
+
+  if (isAuth && JSON.parse(isAuth) === true){
+      return true
+  }
+  return false
 }
 
-const initialState = { isAuth: false } as CounterState
+interface CounterState {
+  isAuth: any
+}
+
+const initialState = { isAuth: userAuthFromLocalStorage() } as CounterState
 
 const authSlice = createSlice({
   name: 'auth',
