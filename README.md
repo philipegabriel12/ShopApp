@@ -25,7 +25,7 @@ It's also my first project.
   cd server
   npm install
 ```
-* Go to the client directory and install the dependencies
+* Go back to the client directory and install the dependencies
 ```shell
   cd ../client
   npm install
