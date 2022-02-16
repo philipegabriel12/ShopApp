@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { onLogout } from "../api/auth";
 import { unauthUser } from "../redux/slices/authSlice";
 
 export function Navbar() {
     const authState = useSelector((state:any) => state.auth)
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const logout = async () => {
@@ -13,6 +14,7 @@ export function Navbar() {
 
         dispatch(unauthUser())
         localStorage.removeItem('isAuth')
+        navigate("/login")
 
     } catch (error) {
         console.log(error.response)

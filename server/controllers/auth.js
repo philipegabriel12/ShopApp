@@ -89,3 +89,15 @@ exports.logout = async (req, res) => {
         })
     }
 }
+
+exports.home = async (req, res) => {
+    try {
+        return res.status(200).json({
+            info: "Main home protected data"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error: error.message
+        })
+    }
+}
