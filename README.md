@@ -2,7 +2,7 @@
 
 Not yet --> A simple yet fully functional full-stack e-commerce project, built with Postgres, Express, React and Node.
 
-It's also my first project.
+It's also my first project as a web developer.
 
 ## Setup locally
 
