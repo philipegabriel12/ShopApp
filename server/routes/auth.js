@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const { getUsers, newUser, login, dashboard, logout, home } = require('../controllers/auth')
+const { updateUser } = require('../controllers/update')
 const { userAuth } = require('../middlewares/auth-middleware')
 const { validationMiddleware } = require('../middlewares/validation-middleware')
 const { registerValidation, loginValidation } = require('../validators/auth')
@@ -11,5 +12,6 @@ router.post('/login', loginValidation, validationMiddleware, login)
 router.get('/dashboard', userAuth, dashboard)
 router.get('/home', userAuth, home)
 router.get('/logout', logout)
+router.put('/update-user', userAuth, updateUser)
 
 module.exports = router

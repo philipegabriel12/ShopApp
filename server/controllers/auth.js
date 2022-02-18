@@ -9,7 +9,6 @@ exports.getUsers = async (req, res) => {
     try {
         const {rows} = await pool.query("SELECT * FROM users")
 
-        console.log(rows)
         res.json(rows)
 
     } catch (error) {
@@ -21,16 +20,12 @@ exports.getUsers = async (req, res) => {
 
 exports.newUser = async (req, res) => {
     const {email, username, password} = req.body
+    const lowercase_email = email.toLowerCase()
     try {
-        /* const {email, username, password} = req.body;
-        const createUser = await pool.query("INSERT INTO users (email, username, password, created_at) VALUES($1, $2, $3)", [
-            email, username, password
-        ]) */
-
         const hashedPassword = await hash(password, 10)
 
         await pool.query('INSERT INTO users(email, username, password) VALUES($1, $2, $3)', [
-            email, username, hashedPassword
+            lowercase_email, username, hashedPassword
         ])
 
         return res.status(201).json({

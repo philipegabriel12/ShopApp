@@ -4,6 +4,10 @@ CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     username VARCHAR(255) NOT NULL,
+    address VARCHAR(200),
+    city VARCHAR(200),
+    state VARCHAR(200),
+    country VARCHAR(200),
     password VARCHAR(255),
     created_at DATE DEFAULT current_date
 );

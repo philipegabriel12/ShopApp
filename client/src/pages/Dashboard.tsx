@@ -3,11 +3,13 @@ import { Layout } from "../components/Layout";
 import { unauthUser } from "../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { EditProfile } from "../components/EditProfile";
 
 export function Dashboard() {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
   const [protectedData, setProtectedData] = useState(null)
+  const [showEditProfile, setShowEditProfile] = useState(false)
 
   const logout = async () => {
     try {
@@ -40,11 +42,15 @@ export function Dashboard() {
       <Layout>
         <h1>Loading...</h1>
       </Layout>
+    ) : showEditProfile ? (
+      <Layout>
+        <EditProfile setShowEditProfile={setShowEditProfile} />
+      </Layout>
     ) : (
       <Layout>
-        <div>
+        <div className="d-flex flex-column">
           <h1>Dashboard</h1>
-          <h2>{protectedData}</h2>
+          <button onClick={(e) => setShowEditProfile(!showEditProfile)}>Edit Profile</button>
         </div>
       </Layout>
     )
