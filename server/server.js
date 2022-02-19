@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require("dotenv").config({ path: __dirname + "/.env" });
-const { PORT, CLIENT_URL } = require('./constants')
+const { PORT, CLIENT_URL, SERVER_URL } = require('./constants')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const cors = require('cors')
@@ -31,7 +31,7 @@ app.use('/api', authRoute)
 const appStart = () => {
     try {
         app.listen(PORT, () => {
-            console.log(`This app is running on http://localhost:${PORT}`)
+            console.log(`This app is running on ${SERVER_URL}`)
         })
     } catch (error) {
         console.log(`Error: ${error.message}`)

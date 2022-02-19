@@ -2,6 +2,7 @@ const pool = require("../db/db")
 const {hash} = require('bcryptjs')
 const { sign } = require('jsonwebtoken')
 const { SECRET } = require('../constants')
+const { getUserById } = require("../db/user.db")
 
 // dev controllers
 
@@ -63,8 +64,10 @@ exports.login = async (req, res) => {
 
 exports.dashboard = async (req, res) => {
     try {
+        const user = await getUserById(req.user.id)
+        user.password = undefined
         return res.status(200).json({
-            info: "Protected info"
+            info: user
         })
     } catch (error) {
         console.log(error.message)

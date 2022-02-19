@@ -15,6 +15,13 @@ export async function onLogin(loginData:object){
         )
 }
 
+export async function onUpdateUser(updateData:object){
+    return await axios.put(
+        "http://localhost:5000/api/update-user",
+        updateData
+    )
+}
+
 export async function onLogout(){
     return await axios.get(
         "http://localhost:5000/api/logout"

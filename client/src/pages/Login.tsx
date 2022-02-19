@@ -47,14 +47,16 @@ export function Login() {
         <h1>Log in to ShopApp</h1>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic inventore qui obcaecati laudantium accusamus.</p>
       </div>
-      <form className="d-flex flex-column align-self-start bg-light p-5 rounded" style={{"width": 
+      <form className="d-flex flex-column align-self-start bg-dark p-5 rounded" style={{"width": 
       '100%'
       }} onSubmit={(e) => onSubmit(e)}>
         <div className="w-100">
-          <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="email" name="email" type="email" placeholder="Email" value={values.email} required></input>
+          <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="email" name="email" type="email" placeholder="Email" value={values.email} style={
+            {background: "transparent"}} required></input>
         </div>
         <div className="w-100 mt-3">
-          <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="password" name="password" type="password" placeholder="Password" value={values.password} required></input>
+          <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="password" name="password" type="password" placeholder="Password" value={values.password} style={
+            {background: "transparent"}} required></input>
           <div style={{
             color: "red", margin: "10px 0"
           }}>{error}</div>
