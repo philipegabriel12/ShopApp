@@ -62,6 +62,20 @@ exports.login = async (req, res) => {
     }
 }
 
+exports.forgotPass = async (req, res) => {
+    try {
+        return res.status(200).json({
+            success: true,
+            message: 'Email has been sent!'
+        })
+        // in reality it sends nothing :)
+    } catch (error) {
+        return res.status(500).json({
+            error: error.message
+        })
+    }
+}
+
 exports.dashboard = async (req, res) => {
     try {
         const user = await getUserById(req.user.id)
