@@ -11,7 +11,7 @@ exports.updateUser = async (req, res) => {
         const emailValidation =
         changes.email && user.email.toLowerCase() == changes.email.toLowerCase()
 
-        if(emailValidation){
+        if(emailValidation && changes.id != user.user_id){
             errors["email"] = "E-mail is already taken"
         }
 

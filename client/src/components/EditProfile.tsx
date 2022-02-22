@@ -1,28 +1,11 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { fetchProtectedData, onLogout, onUpdateUser } from "../api/auth"
-import { unauthUser } from "../redux/slices/authSlice"
+import { fetchProtectedData, onUpdateUser } from "../api/auth"
 
 type ProfileProps = {
     setShowEditProfile: Function,
 }
 
 export function EditProfile(props: ProfileProps){
-
-    const dispatch = useDispatch()
-
-    const logout = async () => {
-        try {
-            await onLogout()
-    
-            dispatch(unauthUser())
-            localStorage.removeItem('isAuth')
-    
-        } catch (error) {
-            console.log(error.response)
-        }
-    }
-
     async function protectedInfo() {
         try {
         const {data} = await fetchProtectedData()
@@ -61,7 +44,7 @@ export function EditProfile(props: ProfileProps){
         try {
             await onUpdateUser(values)
             props.setShowEditProfile(false)
-            logout()
+            window.location.reload();
         } catch (error) {
             setErrors("E-mail already exists")
         }
