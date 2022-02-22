@@ -1,4 +1,3 @@
-const pool = require("../db/db")
 const { getUserById, updateUserDb } = require('../db/user.db')
 
 exports.updateUser = async (req, res) => {

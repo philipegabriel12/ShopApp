@@ -38,7 +38,20 @@ const loginFieldCheck = check('email').custom( async (value, { req }) => {
     req.user = user.rows[0]
 })
 
+const forgotPassCheck = check('email').custom( async (value, { req }) => {
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+        value
+    ])
+    if(!user.rows.length){
+        throw new Error('E-mail does not exist.')
+    }
+    // this only checks if user exists, nothing else
+    user.rows[0].password = undefined
+    req.user = user.rows[0]
+})
+
 module.exports = {
     registerValidation: [email, password, emailExists],
-    loginValidation: [loginFieldCheck]
+    loginValidation: [loginFieldCheck],
+    forgotPassValidation: [forgotPassCheck],
 }

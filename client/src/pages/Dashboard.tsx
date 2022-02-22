@@ -4,12 +4,17 @@ import { unauthUser } from "../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { EditProfile } from "../components/EditProfile";
+import { DashboardLayout } from "../components/DashboardLayout";
 
 export function Dashboard() {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
   const [protectedData, setProtectedData] = useState(Object)
   const [showEditProfile, setShowEditProfile] = useState(false)
+  const [passwordReset, setPasswordReset] = useState(false)
+  const [passwordResetText, setPasswordResetText] = useState(
+    "Reset password by email"
+  )
 
   const logout = async () => {
     try {
@@ -34,6 +39,12 @@ export function Dashboard() {
       }
    }
 
+   const resetPassword = () => {
+     // in reality this does nothing :)
+     setPasswordReset(true)
+     setPasswordResetText("An email has been sent for verification.")
+   }
+
    useEffect(() => {
      protectedInfo()
    }, [])
@@ -43,11 +54,11 @@ export function Dashboard() {
         <h1>Loading...</h1>
       </Layout>
     ) : showEditProfile ? (
-      <Layout>
+      <DashboardLayout>
         <EditProfile setShowEditProfile={setShowEditProfile} />
-      </Layout>
+      </DashboardLayout>
     ) : (
-      <Layout>
+      <DashboardLayout>
         <div className="d-flex flex-column mt-5 bg-dark w-75 rounded p-5 shadow">
           <h1>Dashboard</h1>
           <p className="text-light">Here you can see and edit your personal data.</p>
@@ -62,7 +73,7 @@ export function Dashboard() {
             </div>
             <div className="d-flex flex-row">
               <p className="w-25 text-info">Password:</p>
-              <button className="btn btn-outline-success align-self-center">Reset password by email</button>
+              <button className="btn btn-outline-success align-self-center" id="resetPassword" onClick={resetPassword} disabled={passwordReset}>{passwordResetText}</button>
             </div>
           </section>
           <section className="w-100 mt-5">
@@ -85,7 +96,7 @@ export function Dashboard() {
           </section>
           <button className="w-25 mt-3 btn btn-danger" onClick={(e) => setShowEditProfile(!showEditProfile)}>Edit Profile</button>
         </div>
-      </Layout>
+        </DashboardLayout>
     )
   }
   

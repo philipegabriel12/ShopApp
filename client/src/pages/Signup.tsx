@@ -48,15 +48,15 @@ export function Signup() {
         }} onSubmit={(e) => onSubmit(e)}>
           <div className="w-100">
             <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="email" name="email" type="email" placeholder="Email" value={values.email} style={
-            {background: "transparent"}} required></input>
+            {background: "#121416", color: "white"}} required></input>
           </div>
           <div className="w-100 mt-3">
             <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="username" name="username" type="text" placeholder="Username" value={values.username} style={
-            {background: "transparent"}} required></input>
+            {background: "#121416", color: "white"}} required></input>
           </div>
           <div className="w-100 mt-3">
             <input onChange={(e) => onChange(e)} className="w-100 border border-primary p-2" id="password" name="password" type="password" placeholder="Password" value={values.password} style={
-            {background: "transparent"}} required></input>
+            {background: "#121416", color: "white"}} required></input>
             <div style={{
               color: "red", margin: "10px 0"
             }}>{error}</div>
