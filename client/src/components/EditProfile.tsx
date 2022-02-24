@@ -6,6 +6,24 @@ type ProfileProps = {
 }
 
 export function EditProfile(props: ProfileProps){
+    const isEqual = () => {
+        const obj1 = initValues
+        const obj2 = values
+        const key1 = Object.keys(initValues)
+        const key2 = Object.keys(values)
+
+        if (key1.length !== key2.length) {
+            return false;
+        }
+
+        for (let i of key1) {
+            if (obj1[i as keyof typeof obj1] !== obj2[i as keyof typeof obj2]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     async function protectedInfo() {
         try {
         const {data} = await fetchProtectedData()
@@ -15,7 +33,12 @@ export function EditProfile(props: ProfileProps){
             city: data.info.city,
             state: data.info.state,
             country: data.info.country,})
-
+        setInitValues({email: data.info.email,
+            username: data.info.username,
+            address: data.info.address,
+            city: data.info.city,
+            state: data.info.state,
+            country: data.info.country,})
         } catch (error) {
             console.log(error.response)
         }
@@ -28,26 +51,45 @@ export function EditProfile(props: ProfileProps){
         state: '',
         country: '',    
     })
-    const [errors, setErrors] = useState('')
-    
+    const [error, setError] = useState('')
+    const [initError, setInitError] = useState('')
+    const [initValues, setInitValues] = useState({email: '',
+        username: '',
+        address: '',
+        city: '',
+        state: '',
+        country: '',    
+    })
+        
     const onChange = (e:any) => {
         setValues({
           ...values, [e.target.name]: e.target.value
         })
-        if(errors){
-            setErrors('')
+        setInitValues({
+            ...initValues
+        }
+        )
+        if(error){
+            setError('')
           }
+        if(initError){
+            setInitError('')
+        }
       }
 
     const onSubmit = async (e:any) => {
         e.preventDefault()
-        try {
-            await onUpdateUser(values)
-            props.setShowEditProfile(false)
-            window.location.reload();
-        } catch (error) {
-            setErrors("E-mail already exists")
-        }
+            try {
+                if(isEqual()){
+                    setInitError("No changes have been made.")
+                } else {
+                    await onUpdateUser(values)
+                    window.location.reload()
+                }
+            } catch (error) {
+                console.log(error.message)
+                setError("E-mail already exists")
+            }
     }
 
     useEffect(() => {
@@ -63,7 +105,7 @@ export function EditProfile(props: ProfileProps){
                     <input onChange={(e) => onChange(e)} className="form-control text-light" type="email" id="email" name="email" value={values.email} style={{
                         background: "transparent"
                     }}></input>
-                    <div className="text-danger">{errors}</div>
+                    <div className="text-danger">{error}</div>
                 </div>
                 <div className="d-flex flex-column gap-2">
                     <label htmlFor="username">Username</label>
@@ -95,6 +137,7 @@ export function EditProfile(props: ProfileProps){
                     background: "transparent"
                     }}></input>
                 </div>
+                <div className="text-danger">{initError}</div>
                 <button type="submit" className="btn btn-primary">Save</button>
                 <button className="btn btn-danger" onClick={(e) => {props.setShowEditProfile(false)}}>Close</button>
             </form>
