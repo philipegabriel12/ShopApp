@@ -4,6 +4,8 @@ import { Layout } from "../components/Layout";
 import { useDispatch } from "react-redux";
 import { authUser } from "../redux/slices/authSlice";
 import { ForgotPassDialog } from "../components/ForgotPassDialog";
+import { AiFillFacebook } from "react-icons/ai";
+import { styled } from '@stitches/react';
 
 export function Login() {
   const [values, setValues] = useState({
@@ -68,6 +70,14 @@ export function Login() {
             <button type="submit" className="btn btn-primary w-100" id="login-btn" form="login-form">Login</button>
             <ForgotPassDialog />
         </div>
+        <div className="mt-4 d-flex justify-content-center">
+          <a href="auth/facebook" className="d-flex text-decoration-none gap-2 bg-opacity-75 bg-white p-3 rounded">
+            <AiFillFacebook style={{
+              width: "32", height: "32"
+            }}/>
+            <span className="d-flex align-self-center text-black fs-5">Or login with Facebook</span>
+          </a>
+        </div>  
       </div>
     </Layout>
   )
