@@ -1,10 +1,10 @@
 import { fetchProtectedData, onLogout } from "../api/auth";
-import { Layout } from "../components/Layout";
 import { unauthUser } from "../redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { EditProfile } from "../components/EditProfile";
 import { DashboardLayout } from "../components/DashboardLayout";
+import { LoadingComponent } from "../components/LoadingComponent";
 
 export function Dashboard() {
   const dispatch = useDispatch()
@@ -50,9 +50,7 @@ export function Dashboard() {
    }, [])
 
     return loading ? (
-      <Layout>
-        <h1>Loading...</h1>
-      </Layout>
+        <LoadingComponent />
     ) : showEditProfile ? (
       <DashboardLayout>
         <EditProfile setShowEditProfile={setShowEditProfile} />

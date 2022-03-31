@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { onLogout } from "../api/auth";
 import { homeIsAuth } from "../api/authVerify";
+import { FirstHome } from "../components/FirstHome";
 import { Layout } from "../components/Layout";
+import { LoadingComponent } from "../components/LoadingComponent";
 import { unauthUser } from "../redux/slices/authSlice";
 
 export function Home() {
@@ -21,48 +23,46 @@ export function Home() {
     } catch (error) {
         console.log(error.response)
     }
-}
-
-const protectedInfo = async () => {
-  try {
-    const {data} = await homeIsAuth()
-    setProtectedData(data.info)
-    setLoading(false)
-
-  } catch (error) {
-    logout()
   }
-}
 
-  async function loginState() {
+  const protectedInfo = async () => {
     try {
-      if (authState.isAuth) {
-        protectedInfo()
-        setLoading(false)
-      } else{
-        setLoading(false)
-      }
+      const {data} = await homeIsAuth()
+      setProtectedData(data.info)
+      setLoading(false)
+
     } catch (error) {
-      console.log(error.response)
+      logout()
     }
+  }
+
+  const loginState = async () => {
+      try {
+        if (authState.isAuth) {
+          await protectedInfo()
+          setLoading(false)
+        } else{
+          setLoading(false)
+        }
+      } catch (error) {
+        console.log(error.response)
+      }
   }
 
   useEffect(() => {
     loginState()
-  })
+  }, [])
 
   return loading ? (
-    <Layout>
-      <h1>Loading...</h1>
-    </Layout>
+    <LoadingComponent/>
   ) : authState.isAuth ? (
+    // This renders the main home (after you have logged in)
     <Layout>
       <h1>Main home</h1>
       <h2>{protectedData}</h2>
     </Layout>
   ) : (
-    <Layout>
-      <h1>Home</h1>
-    </Layout>
+    // This renders the first home
+    <FirstHome />
   )
 }

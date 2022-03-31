@@ -4,8 +4,6 @@ import { Layout } from "../components/Layout";
 import { useDispatch } from "react-redux";
 import { authUser } from "../redux/slices/authSlice";
 import { ForgotPassDialog } from "../components/ForgotPassDialog";
-import { AiFillFacebook } from "react-icons/ai";
-import { styled } from '@stitches/react';
 
 export function Login() {
   const [values, setValues] = useState({
