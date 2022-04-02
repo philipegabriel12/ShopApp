@@ -14,7 +14,7 @@ It's also my first project as a web developer.
 ```
 * Go to project directory
 ```shell
-  cd PERN-Store
+  cd ShopApp
 ```
 * Install the dependencies
 ```
