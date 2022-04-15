@@ -13,6 +13,7 @@ const getUserByEmail = async (email) => {
             email
         ]
     )
+    return user[0]
 }
 
 const updateUserDb = async ({
