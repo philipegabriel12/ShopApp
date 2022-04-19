@@ -37,6 +37,19 @@ const Card = styled(motion.div, {
                 height: "200px",
                 padding: "12px",
                 position: "relative",
+            },
+            wrapper: {
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                background: 'rgba(255, 255, 255, 0.2)',
+                borderRadius: '30px',
+            },
+            item: {
+                width: 'inherit',
+                height: 'inherit',
+                background: 'white',
+                transformOrigin: '50% 100%',
             }
         }
     }
@@ -66,7 +79,7 @@ export function FirstHome() {
                   whileTap={{ scale: 0.9 }}
             >
                 <Span color="cardText">
-                    Here you should click or something. But for real, buy stuff. It helps us maintain the website. Lorem Ipsum forever, because I can't think of anymore text. 🤩 😎
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 🤩 😎
                 </Span>
                 <Span color="cardText" position="bottom">
                     Assinado: Lorem Ipsum
