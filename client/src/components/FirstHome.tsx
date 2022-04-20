@@ -37,19 +37,6 @@ const Card = styled(motion.div, {
                 height: "200px",
                 padding: "12px",
                 position: "relative",
-            },
-            wrapper: {
-                width: '100%',
-                height: '100%',
-                overflow: 'hidden',
-                background: 'rgba(255, 255, 255, 0.2)',
-                borderRadius: '30px',
-            },
-            item: {
-                width: 'inherit',
-                height: 'inherit',
-                background: 'white',
-                transformOrigin: '50% 100%',
             }
         }
     }
